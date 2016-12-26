@@ -8,7 +8,8 @@
 
 #include <string>
 
-#include "gen/generator_helper.h"
+#include "gen/color.h"
+#include "gen/promise-helper.h"
 
 class ColorCreator {
  public:
@@ -24,6 +25,8 @@ class ColorCreator {
 
   std::string createColor2(const double& r, const double& g,
       const double& b, const double& alpha);
+
+  std::string createColor3(const Color& c);
 
   std::string primitiveTypeCoverage1(const double& r, const double& g,
       const double& b, const double& alpha);
@@ -63,6 +66,13 @@ class ColorCreator {
 
   std::string primitiveTypeCoverage13(const double& r, const double& g,
       const double& b, const bool& alpha);
+
+  v8::Handle<v8::Promise> promiseReturnValue(const Color& c);
+
+  void SetJavaScriptThis(v8::Local<v8::Object> obj) {
+    // Ignore this if you don't need it
+    // Typical usage: emit an event on `obj`
+  }
 
  private:
 };

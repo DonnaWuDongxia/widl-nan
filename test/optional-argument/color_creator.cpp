@@ -5,6 +5,8 @@
 #include <sstream>
 #include <cmath>
 
+#include "gen/generator_helper.h"
+
 ColorCreator::ColorCreator() {
   // TODO(widl-nan): init your members
 }
@@ -42,6 +44,35 @@ std::string ColorCreator::createColor2(const double& r,
     ss << "Undefined";
   } else {
     ss << alpha;
+  }
+  return ss.str();
+}
+
+std::string ColorCreator::createColor3(const Color& c) {
+  std::stringstream ss;
+  DictionaryColor cData(c);
+  if (cData.has_member_r) {
+    ss << cData.member_r;
+  } else {
+    ss << "Undefined";
+  }
+  ss << ",";
+  if (cData.has_member_g) {
+    ss << cData.member_g;
+  } else {
+    ss << "Undefined";
+  }
+  ss << ",";
+  if (cData.has_member_b) {
+    ss << cData.member_b;
+  } else {
+    ss << "Undefined";
+  }
+  ss << ",";
+  if (cData.has_member_alpha) {
+    ss << cData.member_alpha;
+  } else {
+    ss << "Undefined";
   }
   return ss.str();
 }
@@ -167,4 +198,101 @@ std::string ColorCreator::primitiveTypeCoverage13(const double& r,
     ss << "INVALID_BOOL_VALUE";
   }
   return ss.str();
+}
+
+v8::Handle<v8::Promise> ColorCreator::promiseReturnValue(const Color& c) {
+  using ResolverPersistent = Nan::Persistent<v8::Promise::Resolver>;
+
+  auto period = 3000;  // In ms
+  auto resolver = v8::Promise::Resolver::New(v8::Isolate::GetCurrent());
+  auto persistent = new ResolverPersistent(resolver);
+
+  auto cData = new DictionaryColor(c);
+
+  struct ColorData {
+    DictionaryColor* cData;
+    ResolverPersistent* persistent;
+  };
+
+  uv_timer_t* handle = new uv_timer_t;
+  handle->data = new ColorData{cData, persistent};
+  uv_timer_init(uv_default_loop(), handle);
+
+  // use capture-less lambda for c-callback
+  auto timercb = [](uv_timer_t* handle) -> void {
+    Nan::HandleScope scope;
+
+    auto persistent = static_cast<ColorData*>(handle->data)->persistent;
+    auto cData = static_cast<ColorData*>(handle->data)->cData;
+    delete static_cast<ColorData*>(handle->data);
+
+    uv_timer_stop(handle);
+    uv_close(reinterpret_cast<uv_handle_t*>(handle),
+             [](uv_handle_t* handle) -> void {delete handle;});
+
+    std::stringstream ss;
+    if (cData->has_member_r) {
+      ss << cData->member_r;
+    } else {
+      ss << "Undefined";
+    }
+    ss << ",";
+    if (cData->has_member_g) {
+      ss << cData->member_g;
+    } else {
+      ss << "Undefined";
+    }
+    ss << ",";
+    if (cData->has_member_b) {
+      ss << cData->member_b;
+    } else {
+      ss << "Undefined";
+    }
+    ss << ",";
+    if (cData->has_member_alpha) {
+      ss << cData->member_alpha;
+    } else {
+      ss << "Undefined";
+    }
+
+    auto resolver = Nan::New(*persistent);
+    resolver->Resolve(Nan::New(ss.str()).ToLocalChecked());
+
+    persistent->Reset();
+    delete persistent;
+  };
+  uv_timer_start(handle, timercb, period, 0);
+
+  return resolver->GetPromise();
+  /*
+  PromiseHelper promise;
+  std::stringstream ss;
+  DictionaryColor cData(c);
+
+  if (cData.has_member_r) {
+    ss << cData.member_r;
+  } else {
+    ss << "Undefined";
+  }
+  ss << ",";
+  if (cData.has_member_g) {
+    ss << cData.member_g;
+  } else {
+    ss << "Undefined";
+  }
+  ss << ",";
+  if (cData.has_member_b) {
+    ss << cData.member_b;
+  } else {
+    ss << "Undefined";
+  }
+  ss << ",";
+  if (cData.has_member_alpha) {
+    ss << cData.member_alpha;
+  } else {
+    ss << "Undefined";
+  }
+  promise.ResolvePromise(ss.str());
+  return promise.CreatePromise();
+  */
 }

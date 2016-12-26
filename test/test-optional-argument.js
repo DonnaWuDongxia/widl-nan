@@ -47,6 +47,26 @@ describe('widl-nan Unit Test - Optional argument', function() {
     done();
   });
 
+  it('test methods with optional dictionary argument provided', done => {
+    var x = new ColorCreator();
+    assert.equal(x.createColor3({r:1.0, g:2.0, b:3.0}), '1,2,3,Undefined');
+    assert.equal(x.createColor3({r:1.0}), '1,Undefined,Undefined,Undefined');
+    assert.equal(x.createColor3({}), 'Undefined,Undefined,Undefined,Undefined');
+    // TODO: next line will crash.
+    //assert.equal(x.createColor3(), 'Undefined,Undefined,Undefined,Undefined');
+    x.promiseReturnValue({}).then(function(str) {
+      assert.equal(x.promiseReturnValue({str}), 'Undefined,Undefined,Undefined,Undefined');
+    }, function(e) {
+      console.log("Error testing promise with dic, ", e);
+    })
+    x.promiseReturnValue().then(function(str) {
+      assert.equal(x.promiseReturnValue({str}), 'Undefined,Undefined,Undefined,Undefined');
+    }, function(e) {
+      console.log("Error testing promise with nothing, ", e);
+    })
+    done();
+  });
+
   it('test optional argument in all primitive types', done => {
     var x = new ColorCreator();
     assert.equal(x.primitiveTypeCoverage1(1.0, 2.0, 3.0), '1,2,3,0.75');

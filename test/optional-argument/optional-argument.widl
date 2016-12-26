@@ -5,12 +5,20 @@
 // Extracted from https://www.w3.org/TR/WebIDL/#dfn-optional-argument-default-value
 // W3C Candidate Recommendation 19 April 2012
 
+dictionary Color{
+  float r;
+  float g;
+  float b;
+  double alpha;
+};
+
 [
 Constructor
 ]
 interface ColorCreator {
-  DOMString createColor(float r, float g, float b, optional float alpha);
+  DOMString createColor(float r, optional float g, optional float b, optional float alpha);
   DOMString createColor2(float r, float g, float b, optional float alpha = 0.75);
+  DOMString createColor3(optional Color c);
 
   DOMString primitiveTypeCoverage1(float r, float g, float b, optional unrestricted double alpha = 0.75);
   DOMString primitiveTypeCoverage2(float r, float g, float b, optional unrestricted float alpha = 0.75);
@@ -25,4 +33,7 @@ interface ColorCreator {
   DOMString primitiveTypeCoverage11(float r, float g, float b, optional unsigned long long alpha = 3000000275);
   DOMString primitiveTypeCoverage12(float r, float g, float b, optional DOMString alpha = "0x1000");
   DOMString primitiveTypeCoverage13(float r, float g, float b, optional boolean alpha = true);
+
+  Promise<String> promiseReturnValue(optional Color c);
+
 };
