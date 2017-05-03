@@ -17,7 +17,8 @@ npm install --save ssh://git@github.com/01org/widl-nan.git
 ```
 ### Getting inputs ready
 Before using WIDL-NAN, you need to get the inputs ready. Designed addon interfaces need to be defined into [WIDL](https://heycam.github.io/webidl/) format. We leveraged [webidl2](https://www.npmjs.com/package/webidl2) tool to parse Web IDL files to Abstract Syntax Tree(AST). So all supported WIDL features by WIDL-NAN are compliant with [webidl2](https://www.npmjs.com/package/webidl2/).
-Refer to [Getting inputs ready](https://github.com/DonnaWuDongxia/widl-nan/blob/sdl/Inputs%20and%20outputs.md#getting-inputs-ready) for more details.
+
+Please refer to [Getting inputs ready](https://github.com/DonnaWuDongxia/widl-nan/blob/sdl/Inputs%20and%20outputs.md#getting-inputs-ready) for more details.
 
 ### Compile WIDL files using widl-nan
 All supported command-line options of widl-nan can be listed in the help information by ```-h``` argument.
