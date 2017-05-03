@@ -21,6 +21,8 @@ Before using WIDL-NAN, you need to get the inputs ready. Designed addon interfac
 Please refer to [Getting inputs ready](https://github.com/DonnaWuDongxia/widl-nan/blob/sdl/Inputs%20and%20outputs.md#getting-inputs-ready) for more details.
 
 ### Compile WIDL files using widl-nan
+With the WIDL file ready, you can use widl-nan to generate the initial implementation of the designed Node.js addon.
+
 All supported command-line options of widl-nan can be listed in the help information by ```-h``` argument.
 
 ```
