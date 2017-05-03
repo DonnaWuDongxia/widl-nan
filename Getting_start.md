@@ -97,7 +97,7 @@ Now with the excutable addon, you can test it and all the defined interfaces sho
 [Note] The tool can generate WIDL files to NAN wrappers and C++ implementations, but it has no ability to identify the code you have modified or added. So if WIDL files changed, and you ran steps above again in the same directory, all the files with same path and name will be replaced.
 
 ## Error
-### Syntax error
+#### Syntax error
 Again, we leverage [webidl2.js](https://www.npmjs.com/package/webidl2) to parse Web IDL files, so if syntax error encounterred, [webidl2.js format error](https://www.npmjs.com/package/webidl2/#errors) will be print out in the terminal.
-### Build Error
+#### Build Error
 If you encounterred building errors, please reference to [Node.js addon developing documents](https://nodejs.org/api/addons.html)
