@@ -16,9 +16,9 @@ npm init
 npm install --save ssh://git@github.com/01org/widl-nan.git
 ```
 ### Define addon interfaces into WIDL files
-Before using WIDL-NAN, you need to get the inputs ready. Designed addon interfaces need to be defined to [WIDL](https://heycam.github.io/webidl/) format. We leveraged [webidl2](https://www.npmjs.com/package/webidl2) tool to parse Web IDL files to Abstract Syntax Tree(AST). So all supported WIDL features by WIDL-NAN are compliant with [webidl2](https://www.npmjs.com/package/webidl2/).
+Before using WIDL-NAN, you need to get the inputs ready. Designed addon interfaces need to be defined into [WIDL](https://heycam.github.io/webidl/) format. We leveraged [webidl2](https://www.npmjs.com/package/webidl2) tool to parse Web IDL files to Abstract Syntax Tree(AST). So all supported WIDL features by WIDL-NAN are compliant with [webidl2](https://www.npmjs.com/package/webidl2/).
 
-How to write WIDL files is out of scope of this project. For more details, please refer to [W3C Web IDL](https://heycam.github.io/webidl/) spec. But we have some notes and emphasis listed below except general syntax.
+How to write WIDL files is out scope of this document. For more details, please refer to [W3C Web IDL](https://heycam.github.io/webidl/) spec. But we have some notes and emphasis listed below except general syntax.
 - Array, both the ```sequence<TypeName>``` and the normal array ```TypeName[]```, but we recommend to use sequence.
 - Attributes, readonly and writable attributes are all supported, inheritant attributes has not been supported yet.
 - Buffer, ArrayBuffer and typed array are all supported.
