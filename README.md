@@ -10,7 +10,7 @@ This bindings code is highly repetitive, primarily passing values (arguments and
 ```
 npm install --save ssh://git@github.com/01org/widl-nan.git
 ```
-### Supported command-line options
+
 All supported command-line options of widl-nan can be listed in the help information by ```-h``` argument.
 ```
 ./node_modules/.bin/widl-nan -h
