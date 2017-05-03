@@ -26,7 +26,7 @@ All supported command-line options of widl-nan can be listed in the help informa
     -o, --override    Allow override impl files unconditionally
 ```
 
-You can generate the initial NAN interfaces and C++ implementation for these interfaces by the instruction below.
+Given Web IDL files, you can generate the initial NAN interfaces and C++ implementation for these interfaces by the instruction below.
 
 ```
 ./node_modules/.bin/widl-nan <widl_file_1> <widl_file_2> ...
