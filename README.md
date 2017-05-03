@@ -15,18 +15,9 @@ npm init
 ```
 npm install --save ssh://git@github.com/01org/widl-nan.git
 ```
-### Define addon interfaces into WIDL files
+### Getting inputs ready
 Before using WIDL-NAN, you need to get the inputs ready. Designed addon interfaces need to be defined into [WIDL](https://heycam.github.io/webidl/) format. We leveraged [webidl2](https://www.npmjs.com/package/webidl2) tool to parse Web IDL files to Abstract Syntax Tree(AST). So all supported WIDL features by WIDL-NAN are compliant with [webidl2](https://www.npmjs.com/package/webidl2/).
-
-How to write WIDL files is out scope of this document. For more details, please refer to [W3C Web IDL](https://heycam.github.io/webidl/) spec. But we have some notes and emphasis listed below except general syntax.
-- Array, both the ```sequence<TypeName>``` and the normal array ```TypeName[]```, but we recommend to use sequence.
-- Attributes, readonly and writable attributes are all supported, inheritant attributes has not been supported yet.
-- Buffer, ArrayBuffer and typed array are all supported.
-- Overloaded methods and optional arguments are all supported, but method-overload is recommended. 
-- Primitive types are supported except ``` long long```, WIDL-NAN can handle ```long long```, it will be transformed as ```int64_t```, but the JavaScript engine [V8](https://github.com/v8/v8) can't support 64-bit numbers.
-- Event emitter has not been supported directly, JavaScript Wrapper can be used to achive the goal, please refer [this example](https://github.com/otcshare/node-realsense/blob/master/src/slam/index.js#L13).
-
-For more detail or samples, please check the examples under https://github.com/01org/widl-nan/tree/master/test, basically each supported feature has a test case.
+Refer to [Getting inputs ready](https://github.com/DonnaWuDongxia/widl-nan/blob/sdl/Inputs%20and%20outputs.md#getting-inputs-ready) for more details.
 
 ### Compile WIDL files using widl-nan
 All supported command-line options of widl-nan can be listed in the help information by ```-h``` argument.
