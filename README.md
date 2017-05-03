@@ -15,6 +15,19 @@ npm init
 ```
 npm install --save ssh://git@github.com/01org/widl-nan.git
 ```
+### Define addon interfaces into WIDL files
+Before using WIDL-NAN, you need to get the inputs ready. Designed addon interfaces need to be defined to [WIDL](https://heycam.github.io/webidl/) format. We leveraged [webidl2](https://www.npmjs.com/package/webidl2) tool to parse Web IDL files to Abstract Syntax Tree(AST). So all supported WIDL features by WIDL-NAN are compliant with [webidl2](https://www.npmjs.com/package/webidl2/).
+
+How to write WIDL files is out of scope of this project. For more details, please refer to [W3C Web IDL](https://heycam.github.io/webidl/) spec. But we have some notes and emphasis listed below except general syntax.
+- Array, both the ```sequence<TypeName>``` and the normal array ```TypeName[]```, but we recommend to use sequence.
+- Attributes, readonly and writable attributes are all supported, inheritant attributes has not been supported yet.
+- Buffer, ArrayBuffer and typed array are all supported.
+- Overloaded methods and optional arguments are all supported, but method-overload is recommended. 
+- Primitive types are supported except ``` long long```, WIDL-NAN can handle ```long long```, it will be transformed as ```int64_t```, but the JavaScript engine [V8](https://github.com/v8/v8) can't support 64-bit numbers.
+- Event emitter has not been supported directly, JavaScript Wrapper can be used to achive the goal, please refer [this example](https://github.com/otcshare/node-realsense/blob/master/src/slam/index.js#L13).
+
+For more detail or samples, please check the examples under https://github.com/01org/widl-nan/tree/master/test, basically each supported feature has a test case.
+
 ### Compile WIDL files using widl-nan
 All supported command-line options of widl-nan can be listed in the help information by ```-h``` argument.
 
@@ -58,20 +71,6 @@ node-gyp rebuild
 Now with the excutable addon, you can test it and all the defined interfaces should show up. With this basic project, you can modify files to add your own logics.
 
 [Note] The tool can generate WIDL files to NAN wrappers and C++ implementations, but it has no ability to identify the code you have modified or added. So if WIDL files changed, and you ran steps above again in the same directory, all the files with same path and name will be replaced.
-
-# Supported WIDL features.
-This project leveraged [webidl2](https://www.npmjs.com/package/webidl2) tool to parse WIDL files. So all supported WIDL features listed below in this project are all compliant with [webidl2](https://www.npmjs.com/package/webidl2/).
-- Array, both the ```sequence<TypeName>``` and the normal array ```TypeName[]```, but we recommend to use sequence.
-- Attributes, readonly and writable attributes are all supported, inheritant attributes has not been supported yet.
-- Buffer, ArrayBuffer and typed array are all supported.
-- Callback and Promise are all supported.
-- Dictionary, Interface, constructor, enum, const and static member are all supported.
-- Overloaded methods and optional arguments are all supported, but method-overload is recommended. 
-- Primitive types are supported except ``` long long```.
-- Stringifier is supported.
-- Event emitter has not been supported directly, JavaScript Wrapper can be used to achive the goal, please refer [this example](https://github.com/otcshare/node-realsense/blob/master/src/slam/index.js#L13).
-
-For more detail or samples, please check the examples under https://github.com/01org/widl-nan/tree/master/test, basically each supported feature has a test case.
 
 # Contribution
 
