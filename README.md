@@ -6,25 +6,12 @@ This toolchain transcompiles [W3C Web IDL](https://heycam.github.io/webidl/) to 
 
 This bindings code is highly repetitive, primarily passing values (arguments and return values) between V8 and native and doing various conversions and checks (e.g., type checking), hence it is mostly machine-generated.
 
-# Quick Start
-### Init workspace
-```
-npm init
-```
-### Install widl-nan
+# Install
 ```
 npm install --save ssh://git@github.com/01org/widl-nan.git
 ```
-### Getting inputs ready
-Before using WIDL-NAN, you need to get the inputs ready. Designed addon interfaces need to be defined into [WIDL](https://heycam.github.io/webidl/) format. We leveraged [webidl2](https://www.npmjs.com/package/webidl2) tool to parse Web IDL files to Abstract Syntax Tree(AST). So all supported WIDL features by WIDL-NAN are compliant with [webidl2](https://www.npmjs.com/package/webidl2/).
-
-Please refer to [Getting inputs ready](https://github.com/DonnaWuDongxia/widl-nan/blob/sdl/Inputs%20and%20outputs.md#getting-inputs-ready) for more details.
-
-### Compile WIDL files using widl-nan
-With the WIDL file ready, you can use widl-nan to generate the initial implementation of the designed Node.js addon.
-
+### Supported command-line options
 All supported command-line options of widl-nan can be listed in the help information by ```-h``` argument.
-
 ```
 ./node_modules/.bin/widl-nan -h
   Usage: widl-nan [optinos] [widl] [widl...]
@@ -44,24 +31,8 @@ You can generate the initial NAN interfaces and C++ implementation for these int
 ```
 ./node_modules/.bin/widl-nan <widl_file_1> <widl_file_2> ...
 ```
-
-### Leverage the C++ implementaion
-All generated files lay in a new folder called ```gen``` in current directory. Please refer to [Outputs](https://github.com/DonnaWuDongxia/widl-nan/blob/sdl/Inputs%20and%20outputs.md#outputs) for more details.
-We've got a command-line option ```-i``` helping to put all C++ implementations, the entry file ```addon.cpp``` and the build file ```binding.gyp``` to the right place to make it a template Node.js addon project. 
-
-```
-./node_modules/.bin/widl-nan -i
-```
-
-### Build the addon
-Given WIDL files, after running two commands mentioned above, you can got a buildable Node.js addon project. The project can be build by following instruction.
-
-```
-node-gyp rebuild
-```
-Now with the excutable addon, you can test it and all the defined interfaces should show up. With this basic project, you can modify files to add your own logics.
-
-[Note] The tool can generate WIDL files to NAN wrappers and C++ implementations, but it has no ability to identify the code you have modified or added. So if WIDL files changed, and you ran steps above again in the same directory, all the files with same path and name will be replaced.
+# Getting Start
+[Getting Start]()
 
 # Contribution
 
