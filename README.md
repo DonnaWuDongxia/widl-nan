@@ -32,7 +32,7 @@ Given Web IDL files, you can generate the initial NAN interfaces and C++ impleme
 ./node_modules/.bin/widl-nan <widl_file_1> <widl_file_2> ...
 ```
 # Getting Start
-Please refer to [Getting Start]() for details.
+Please refer to [Getting Start](./Getting start.md) for details.
 
 # Contribution
 
