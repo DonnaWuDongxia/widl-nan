@@ -46,11 +46,8 @@ You can generate the initial NAN interfaces and C++ implementation for these int
 ```
 
 ### Leverage the C++ implementaion
-All generated files lay in a new folder called ```gen``` in current directory. NAN wrappers locate directly in the ```gen``` folder, while the C++ implementations locate in a subfolder called ```dont-build```.
-
-You can of cause work on native implementations from scratch, but these C++ implementations are good basis of counterpart classes' and members' definition to the NAN interfaces. They can help you a lot, and we recommend to start work based on them.
-
-What's more, we have a command-line option ```-i``` helping to put all C++ implementations, the entry file ```addon.cpp``` and the build file ```binding.gyp``` to the right place to make it a template Node.js addon project. 
+All generated files lay in a new folder called ```gen``` in current directory. Please refer to [Outputs](https://github.com/DonnaWuDongxia/widl-nan/blob/sdl/Inputs%20and%20outputs.md#outputs) for more details.
+We've got a command-line option ```-i``` helping to put all C++ implementations, the entry file ```addon.cpp``` and the build file ```binding.gyp``` to the right place to make it a template Node.js addon project. 
 
 ```
 ./node_modules/.bin/widl-nan -i
