@@ -44,7 +44,7 @@ interface Circle {
 
 What's more, [the test cases](https://github.com/01org/widl-nan/tree/master/test) could be good exampls for reference, basically each supported feature has a test case.
 
-### Compile WIDL files using widl-nan
+## Compile WIDL files using widl-nan
 With the WIDL file ready, you can use widl-nan to generate the initial implementation of the designed Node.js addon.
 ```
 ./node_modules/.bin/widl-nan circle.widl
@@ -57,7 +57,7 @@ widl-nan [widl-file-1] [widl-file-2] ...
 But if one single symbol has been defined multiple times in these WIDL files, the latest input will be applies.
 
 
-# Outputs
+## Outputs
 All generated files lay in a new folder called ```gen``` in current directory.
 NAN wrappers locate directly in the ```gen``` folder, while the C++ implementations locate in a subfolder called ```dont-build```.
 ```
@@ -78,7 +78,7 @@ circle-addon
 
 Addon developers of cause can work on the C++ implementations from scratch, but files in ```dont-build``` folder generated according to the defined interfaces are good basis of counterpart classes' and members' definition to the NAN interfaces. They can help you a lot, and we recommend to start work based on them.
 
-### Leverage the C++ implementaion
+## Leverage the C++ implementaion
 We've got a command-line option ```-i``` helping to put all C++ implementations, the entry file ```addon.cpp``` and the build file ```binding.gyp``` to the right place to make it a template Node.js addon project. 
 
 ```
@@ -86,7 +86,7 @@ We've got a command-line option ```-i``` helping to put all C++ implementations,
 ```
 At this time, all the files in ```dont-build``` folder will be copied directly to the project folder under ```circle-addon```.
 
-### Build the addon
+## Build the addon
 Given WIDL files, after running commands mentioned above, you can got a buildable Node.js addon project. The project can be build by following instruction.
 
 ```
