@@ -32,7 +32,7 @@ You can generate the initial NAN interfaces and C++ implementation for these int
 ./node_modules/.bin/widl-nan <widl_file_1> <widl_file_2> ...
 ```
 # Getting Start
-[Getting Start]()
+Please refer to [Getting Start]() for details.
 
 # Contribution
 
