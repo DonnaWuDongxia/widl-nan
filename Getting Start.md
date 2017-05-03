@@ -100,4 +100,4 @@ Now with the excutable addon, you can test it and all the defined interfaces sho
 ### Syntax error
 Again, we leverage [webidl2.js](https://www.npmjs.com/package/webidl2) to parse Web IDL files, so if syntax error encounterred, [webidl2.js format error](https://www.npmjs.com/package/webidl2/#errors) will be print out in the terminal.
 ### Build Error
-If you encounterred building errors, please reference to [Node.js addon developing documents)[https://nodejs.org/api/addons.html]
+If you encounterred building errors, please reference to [Node.js addon developing documents](https://nodejs.org/api/addons.html)
